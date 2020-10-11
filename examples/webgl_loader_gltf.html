@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - glTF loader</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<link type="text/css" rel="stylesheet" href="resume.css">
+		<link rel="shortcut icon" href="../../files/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../files/main.css">
+		<script src="files.js"></script>
+	</head>
+
+	<body>
+		<div id="info">
+			Hello and welcome to my Webpage!<br>
+			Press on the buttons to know more about me.
+		</div>
+
+		<div id="resume" class="left-buttons first-page">
+			<a href="../resume.pdf" download="resume.pdf"><button class="transparent-button">Resume</button></a>
+		</div>
+		<div id="achievements" onclick="achievementsNavigation()" class="left-buttons first-page">
+			<button class="transparent-button">Achievements</button>
+		</div>
+		<div id="worksamples"  class="left-buttons first-page">
+			<a target="_blank" href="https://github.com/rna-afk"><button class="transparent-button">Work Samples</button></a>
+		</div>
+		<div id="education" onclick="educationNavigation()" class="right-buttons first-page">
+			<button class="transparent-button">Education</button>
+		</div>
+		<div id="workexperience" onclick="workExperienceNavigation()" class="right-buttons first-page">
+			<button class="transparent-button">Work Experience</button>
+		</div>
+		<div id="aboutme" onclick="aboutMeNavigation()" class="right-buttons first-page">
+			<button class="transparent-button">About me</button>
+		</div>
+
+		<div id="backbutton" onclick="backToPage()" class="back-button">
+			<button class="transparent-button">Back</button>
+		</div>
+
+		<div class="achievements-page page hidden">
+			<div style="padding-left: 10%;">Here are a list of achievements:</div>
+			<ul>
+				<li><a target="_blank" href="https://youtu.be/UH5r1rEz9Gg">Coded and contributed to the AWS Re:Invent Preston Digital Twin</a></li>
+				<li><a href="../Microsoft_Certificate.pdf" download="Certificate.pdf">Microsoft Certified Professional</a></li>
+				<li><a href="/microsoft_certificate">BSNL Platinum Certificate</a></li>
+				<li><a href="/microsoft_certificate">BSNL Gold Certificate</a></li>
+				<li><a href="/microsoft_certificate">BSNL Silver Certificate</a></li>
+				<li><a href="/microsoft_certificate">XPOLogistics Hackathon winner in the field of AR</a></li>				
+				<li><a href="/microsoft_certificate">SRM Infotech Certificate for C, C++ and Java</a></li>
+				<li><a href="/microsoft_certificate">Data Structures and Algorithms in C Certificate from NPTEL(IIT-Madras)</a></li>
+			</ul>
+		</div>
+
+		<div class="work-experience-page page hidden">
+			<div class="work-experience-page page hidden left-paragraph" style="top:25px"><br>
+				<span>Infosys Ltd : Dec 2015 - Dec 2018</span><br>
+				<span>Senior Software Developer</span><br>
+				<span>
+					Worked with the Infosys R&D Division - iCETS in the field of IoT developing 
+					full stack, hybrid mobile app (Ionic framework), Cloud based analytics(Azure)
+					and sensor integration code including being involved in SCRUM calls, design 
+					discussions and actual coding. Helped build state of the art applications and POCs that Infosys would use 
+					to bring in new customers. Worked in 8 projects for a period of 3 years.
+				</span><br>
+				<button onclick="projectsNavigation()" class="transparent-button small-buttons">Project Details</button>
+			</div>
+			<div class="work-experience-page page hidden left-paragraph" style="top:400px"><br>
+				<span>Red Hat Inc : Jan 2020 - Aug 2020</span><br>
+				<span>Master's Intern</span><br>
+				<span>
+					Worked with the Openshift Installer team that creates clusters in any cloud
+					platform. Designed and coded the new metric system that would collect usage
+					data from the users and report if any users face any troubles creating a 
+					cluster and faces repeated failures. The usage data will also carry environment
+					specific details and will help Red Hat analyze why the installation failed.
+				</span><br>
+				<button onclick="projectsRedHatNavigation()" class="transparent-button small-buttons">Project Details</button>
+			</div>
+		</div>
+
+		<div class="work-experience-page page hidden">
+			<div class="work-experience-page page hidden right-paragraph" style="top:25px"><br>
+				<span>Northeastern University : Apr 2019 - Dec 2019, Sept 2020 - Dec 2020</span><br>
+				<span>Graduate Teaching Assistant</span><br>
+				<span>
+					Worked as a Teaching Assistant for the subjects Programming Design Paradigm, Object Oriented Programming
+					and Algorithms for 3 semesters.
+				</span><br>
+				<button onclick="projectsRedHatNavigation()" class="transparent-button small-buttons">Project Details</button>
+			</div>
+		</div>
+
+		<div class="education-page page hidden">
+			<div class="education-page page hidden left-paragraph" style="top:25px">
+				<span>
+					P.B College of Engineering - Anna University : Aug 2011 - May 2015
+				</span>
+				<span>
+					Bachelor of Engineering in Electronics and Communication Engineering
+				</span>
+			</div>
+			<div class="education-page page hidden left-paragraph" style="top:125px">
+				<span>
+					Northeastern University - Khoury College of Computer Sciences : Jan 2019 - Dec 2020
+				</span>
+				<span>
+					Master's of Science in Computer Science
+				</span>
+			</div>
+		</div>
+
+
+		<script type="module">
+
+			import * as THREE from '../build/three.module.js';
+
+			import { OrbitControls } from './jsm/controls/OrbitControls.js';
+			import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
+			import { RGBELoader } from './jsm/loaders/RGBELoader.js';
+			import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
+
+			var container, controls;
+			var camera, scene, renderer;
+
+			init();
+			render();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
+				camera.position.set( - 1.8, 0.6, 2.7 );
+
+				scene = new THREE.Scene();
+
+				new RGBELoader()
+					.setDataType( THREE.UnsignedByteType )
+					.setPath( 'textures/equirectangular/' )
+					.load( 'royal_esplanade_1k.hdr', function ( texture ) {
+
+						var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
+
+						scene.background = envMap;
+						scene.environment = envMap;
+
+						texture.dispose();
+						pmremGenerator.dispose();
+
+						render();
+
+						// model
+
+						// use of RoughnessMipmapper is optional
+						var roughnessMipmapper = new RoughnessMipmapper( renderer );
+
+						//var loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
+						var loader = new GLTFLoader().load( 'models/gltf/adi.gltf', function ( gltf ) {
+
+							gltf.scene.traverse( function ( child ) {
+
+								if ( child.isMesh ) {
+
+									// TOFIX RoughnessMipmapper seems to be broken with WebGL 2.0
+									// roughnessMipmapper.generateMipmaps( child.material );
+
+								}
+
+							} );
+
+							gltf.scene.scale.x = 0.125
+							gltf.scene.scale.y = 0.125
+							gltf.scene.scale.z = 0.125
+
+							gltf.scene.position.y = -1.5
+							gltf.scene.rotation.y = -0.5
+							gltf.scene.position.x = -0.125
+							console.log(gltf);
+
+							scene.add( gltf.scene );
+
+							roughnessMipmapper.dispose();
+
+							render();
+
+						} );
+
+					} );
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.toneMapping = THREE.ACESFilmicToneMapping;
+				renderer.toneMappingExposure = 1;
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				container.appendChild( renderer.domElement );
+
+				var pmremGenerator = new THREE.PMREMGenerator( renderer );
+				pmremGenerator.compileEquirectangularShader();
+
+				controls = new OrbitControls( camera, renderer.domElement );
+				controls.addEventListener( 'change', render ); // use if there is no animation loop
+				controls.minDistance = 2;
+				controls.maxDistance = 10;
+				controls.target.set( 0, 0, - 0.2 );
+				controls.update();
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				render();
+
+			}
+
+			//
+
+			function render() {
+
+				renderer.render( scene, camera );
+
+			}
+
+			
+
+		</script>
+		<script>
+			var prevPage = "first-page";
+			function hideAllContent() {
+				var cssClasses = ["first-page","achievements-page","work-sample-page",
+				"work-experience-page","education-page","about-me-page"];
+				for(var i=0;i<cssClasses.length;i++) {
+					var buttons = document.getElementsByClassName(cssClasses[i]);
+					for(var j=0;j<buttons.length;j++) {
+						buttons[j].style.display = "none";
+					}
+				}
+			}
+
+			function displayOnePage(cssClassNameForPage){
+				hideAllContent();
+				var buttons = document.getElementsByClassName(cssClassNameForPage);
+				for(var i=0;i<buttons.length;i++) {
+					buttons[i].style.display = "block";
+				}
+			}
+
+			function backToPage(){
+				hideAllContent();
+				displayOnePage(prevPage);
+				document.getElementById("backbutton").style.display = "none";
+			}
+
+			function achievementsNavigation(){
+				displayOnePage("achievements-page");
+				prevPage = "first-page";
+				document.getElementById("backbutton").style.display = "block";
+			}
+
+			function workSampleNavigation(){
+				displayOnePage("work-sample-page");
+				prevPage = "first-page";
+				document.getElementById("backbutton").style.display = "block";
+			}
+
+			function aboutMeNavigation(){
+				displayOnePage("about-me-page");
+				prevPage = "first-page";
+				document.getElementById("backbutton").style.display = "block";
+			}
+
+			function workExperienceNavigation(){
+				displayOnePage("work-experience-page");
+				prevPage = "first-page";
+				document.getElementById("backbutton").style.display = "block";
+			}
+
+			function educationNavigation(){
+				displayOnePage("education-page");
+				prevPage = "first-page";
+				document.getElementById("backbutton").style.display = "block";
+			}
+		</script>
+
+	</body>
+</html>

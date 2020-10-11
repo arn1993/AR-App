@@ -1,0 +1,61 @@
+.left-buttons {
+    position:absolute;
+    left:15%;
+}
+.right-buttons{
+    position:absolute;
+    right:15%;
+}
+#resume{
+    top: 25%;
+}
+#achievements{
+    top: 40%;
+}
+#aboutme{
+    top: 55%;
+}
+#education {
+    top: 25%;
+}
+#worksamples{
+    top: 55%;
+}
+#workexperience{
+    top: 40%;
+}
+.transparent-button{
+    background-color: transparent;
+    width: 145px;
+    height: 95px;
+    color:#ffffff;
+}
+.back-button{
+    position:absolute;
+    left: 40%;
+    top: 75%;
+    display:none;
+}
+.hidden{
+    display:none;
+}
+.achievements-page{
+    position:absolute;
+    top:25%;
+}
+.page{
+    position:absolute;
+}
+.left-paragraph{
+    width:450px;
+    left: 50px;
+}
+
+.right-paragraph{
+    width:450px;
+    left: 1000px;
+}
+
+.small-buttons{
+    height:45px;
+}
