@@ -1,20 +1,201 @@
-<html>
-    <!-- 💁 Include both scripts below to support all browsers! -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>three.js examples</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="shortcut icon" href="../files/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../files/main.css">
+	</head>
+	<body>
 
-    <!-- Loads <model-viewer> for modern browsers: -->
-    <script type="module"
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js">
-    </script>
+		<iframe id="viewer" name="viewer" allowfullscreen allowvr onmousewheel=""></iframe>
 
-    <!-- Loads <model-viewer> for old browsers like IE11: -->
-    <script nomodule
-    src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js">
-    </script>
+		<a id="button" target="_blank"><img src="../files/ic_code_black_24dp.svg"></a>
 
-    <head>
-        <title>3D Test</title>
-    </head>
-    <body>
-        <model-viewer src="/glb/aditya_full_body_avatar.glb" ar></model-viewer>
-    </body>
+		<script src="files.js"></script>
+
+		<script>
+
+		var viewer = document.getElementById( 'viewer' );
+
+		var links = {};
+		var selected = null;
+		var container = document.createElement( 'div' );
+
+		init();
+
+		function init() {
+			loadFile( "examples/webgl_loader_gltf" );
+
+			// iOS iframe auto-resize workaround
+
+			if ( /(iPad|iPhone|iPod)/g.test( navigator.userAgent ) ) {
+
+				viewer.style.width = getComputedStyle( viewer ).width;
+				viewer.style.height = getComputedStyle( viewer ).height;
+				viewer.setAttribute( 'scrolling', 'no' );
+
+			}
+
+		}
+
+		function loadFile( file ) {
+			viewer.src = file + '.html';
+
+		}
+
+		function selectFile( file ) {
+
+			if ( selected !== null ) links[ selected ].classList.remove( 'selected' );
+
+			links[ file ].classList.add( 'selected' );
+
+			window.location.hash = file;
+			viewer.focus();
+
+			panel.classList.remove( 'open' );
+
+			selected = file;
+
+			// Reveal "View source" button and set attributes to this example
+			viewSrcButton.style.display = '';
+			viewSrcButton.href = 'https://github.com/mrdoob/three.js/blob/master/examples/' + selected + '.html';
+			viewSrcButton.title = 'View source code for ' + getName( selected ) + ' on GitHub';
+
+		}
+
+		function updateFilter() {
+
+			var v = filterInput.value.trim();
+			v = v.replace( /\s+/gi, ' ' ); // replace multiple whitespaces with a single one
+
+			if ( v !== '' ) {
+
+				window.history.replaceState( {}, '', '?q=' + v + window.location.hash );
+
+			} else {
+
+				window.history.replaceState( {}, '', window.location.pathname + window.location.hash );
+
+			}
+
+			var exp = new RegExp( v, 'gi' );
+
+			for ( var key in files ) {
+
+				var section = files[ key ];
+
+				for ( var i = 0; i < section.length; i ++ ) {
+
+					filterExample( section[ i ], exp );
+
+				}
+
+			}
+
+			layoutList();
+
+		}
+
+		function filterExample( file, exp ) {
+
+			var link = links[ file ];
+			var name = getName( file );
+			if ( file in tags ) file += ' ' + tags[ file ].join( ' ' );
+			var res = file.match( exp );
+			var text;
+
+			if ( res && res.length > 0 ) {
+
+				link.classList.remove( 'hidden' );
+
+				for ( var i = 0; i < res.length; i ++ ) {
+
+					text = name.replace( res[ i ], '<b>' + res[ i ] + '</b>' );
+
+				}
+
+				link.querySelector( '.title' ).innerHTML = text;
+
+			} else {
+
+				link.classList.add( 'hidden' );
+				link.querySelector( '.title' ).innerHTML = name;
+
+			}
+
+		}
+
+		function getName( file ) {
+
+			var name = file.split( '_' );
+			name.shift();
+			return name.join( ' / ' );
+
+		}
+
+		function layoutList() {
+
+			for ( var key in files ) {
+
+				var collapsed = true;
+
+				var section = files[ key ];
+
+				for ( var i = 0; i < section.length; i ++ ) {
+
+					var file = section[ i ];
+
+					if ( links[ file ].classList.contains( 'hidden' ) === false ) {
+
+						collapsed = false;
+						break;
+
+					}
+
+				}
+
+				var element = document.querySelector( 'h2[data-category="' + key + '"]' );
+
+				if ( collapsed ) {
+
+					element.classList.add( 'hidden' );
+
+				} else {
+
+					element.classList.remove( 'hidden' );
+
+				}
+
+			}
+
+		}
+
+		function extractQuery() {
+
+			var p = window.location.search.indexOf( '?q=' );
+
+			if ( p !== - 1 ) {
+
+				return decodeURI( window.location.search.substr( 3 ) );
+
+			}
+
+			return '';
+
+		}
+
+
+		function createElementFromHTML( htmlString ) {
+
+			var div = document.createElement( 'div' );
+			div.innerHTML = htmlString.trim();
+			return div.firstChild;
+
+		}
+
+		</script>
+
+	</body>
 </html>
