@@ -121,12 +121,18 @@
 			import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 			import { RGBELoader } from './jsm/loaders/RGBELoader.js';
 			import { RoughnessMipmapper } from './jsm/utils/RoughnessMipmapper.js';
+			import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
+			import Stats from './jsm/libs/stats.module.js';
 
 			var container, controls;
 			var camera, scene, renderer;
+			var clock = new THREE.Clock();
+			var mixer;
+			var stats = new Stats();
 
 			init();
 			render();
+			// animate();
 
 			function init() {
 
@@ -158,8 +164,13 @@
 						// use of RoughnessMipmapper is optional
 						var roughnessMipmapper = new RoughnessMipmapper( renderer );
 
+						var dracoLoader = new DRACOLoader();
+						dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
+
 						//var loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
-						var loader = new GLTFLoader().load( 'models/gltf/adi.gltf', function ( gltf ) {
+						var loader = new GLTFLoader()
+						loader.setDRACOLoader(dracoLoader)
+						loader.load( 'models/gltf/aditya.glb', function ( gltf ) {
 
 							gltf.scene.traverse( function ( child ) {
 
@@ -176,10 +187,15 @@
 							gltf.scene.scale.y = 0.125
 							gltf.scene.scale.z = 0.125
 
-							gltf.scene.position.y = -1.5
+							gltf.scene.position.y = -1.25
 							gltf.scene.rotation.y = -0.5
 							gltf.scene.position.x = -0.125
 							console.log(gltf);
+
+							mixer = new THREE.AnimationMixer( gltf.scene );
+							mixer.clipAction( gltf.animations[ 0 ] ).play();
+
+							renderer.setAnimationLoop(mixer);
 
 							scene.add( gltf.scene );
 
@@ -208,6 +224,7 @@
 				controls.maxDistance = 10;
 				controls.target.set( 0, 0, - 0.2 );
 				controls.update();
+				animate();
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
@@ -227,6 +244,24 @@
 			//
 
 			function render() {
+
+				renderer.render( scene, camera );
+				
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				var delta = clock.getDelta();
+				console.log(delta);
+
+				mixer.update( delta );
+
+				controls.update();
+
+				stats.update();
 
 				renderer.render( scene, camera );
 
