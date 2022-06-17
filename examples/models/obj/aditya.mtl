@@ -1,0 +1,47 @@
+# Blender MTL File: 'head.blend'
+# Material Count: 4
+
+newmtl DefaultSkin.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.595800 0.445300 0.341900
+Ks 0.300000 0.300000 0.300000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl FBHead_preview_mat
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd .
+
+newmtl male_elegantsuit01.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.035290 0.035290 0.035290
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 0.000000
+illum 9
+map_Kd C:\\Users\\arn19\\3D Objects\\textures\\male_elegantsuit01_diffuse.png
+map_d C:\\Users\\arn19\\3D Objects\\textures\\male_elegantsuit01_diffuse.png
+
+newmtl shoes01.001
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.278400 0.278400 0.278400
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 0.000000
+illum 9
+map_Kd C:\\Users\\arn19\\3D Objects\\textures\\shoes01_diffuse.png
+map_d C:\\Users\\arn19\\3D Objects\\textures\\shoes01_diffuse.png

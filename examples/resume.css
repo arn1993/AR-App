@@ -25,9 +25,8 @@
     top: 40%;
 }
 .transparent-button{
-    background-color: transparent;
-    width: 145px;
-    height: 95px;
+    background-color: #333;
+    border-radius: 25%;
     color:#ffffff;
 }
 .back-button{
@@ -38,13 +37,6 @@
 }
 .hidden{
     display:none;
-}
-.achievements-page{
-    position:absolute;
-    top:25%;
-}
-.page{
-    position:absolute;
 }
 .left-paragraph{
     width:450px;
@@ -58,4 +50,209 @@
 
 .small-buttons{
     height:45px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
+
+body {
+  font-family: Libre Caslon Text;
+  background-color: #FFAB91;
+}
+
+.body-text {
+  padding-top: 20vh;
+  text-align: center;
+  position: relative;
+}
+
+.sideburger {
+    position:absolute;
+    width:50%;
+}
+
+.hamburger-icon {
+  position: absolute;
+  z-index: 10;
+  top: 40%;
+  left: 1%;
+  padding: 1vh;
+  background-color: #333;
+  opacity: 0.3;
+  border-radius: 25%;
+  transition: 0.7s ease-in-out;
+}
+
+.hamburger-icon:hover {
+  background-color: #FFAB91;
+  opacity: 1;
+}
+
+.hamburger-icon span {
+  height: 5px;
+  width: 40px;
+  background-color: black;
+  display: block;
+  margin: 5px 0px 5px 0px;
+  transition: 0.7s ease-in-out;
+  transform: none;
+}
+
+#openmenu:checked ~ .menu-pane {
+  left: -9vw;
+  transform: translateX(-9vw);
+}
+
+#openmenu:checked ~ .body-text {
+display: none;
+}
+
+#openmenu:checked ~ .hamburger-icon span:nth-of-type(1) {
+  transform: translate(0%, 175%) rotate(-45deg);
+  background-color: white;
+}
+
+#openmenu:checked ~ .hamburger-icon span:nth-of-type(2) {
+  transform: rotate(45deg);
+  background-color: white;
+}
+
+#openmenu:checked ~ .hamburger-icon span:nth-of-type(3) {
+  opacity: 0;
+}
+
+.hamburger-icon-achievements span:nth-of-type(1) {
+  transform: translate(0%, 175%) rotate(-45deg);
+  background-color: white;
+}
+
+.hamburger-icon-achievements span:nth-of-type(2) {
+  transform: rotate(45deg);
+  background-color: white;
+}
+
+.hamburger-icon-achievements {
+  position: absolute;
+  z-index: 1;
+  top: 5%;
+  right: 5%;
+  padding-bottom: 2vh;
+}
+
+.hamburger-icon-achievements span {
+  height: 5px;
+  width: 20px;
+  background-color: black;
+  display: block;
+  margin: 5px 0px 5px 0px;
+  transition: 0.7s ease-in-out;
+  transform: none;
+}
+
+.right-button {
+  position: absolute;
+  right:5vw;
+  top: 10vh;
+}
+
+#infosys-page{
+  width:80%;
+  height:84%;
+}
+
+#red-hat-page {
+  width: 80%;
+}
+
+div.menu-pane {
+  background-color: #333;
+  position: absolute;
+  transform: translateX(-105vw);
+  transform-origin: (0, 0);
+  opacity:0.9;
+  left: 14% !important;
+  top: 15%;
+  width: 10%;
+  height: 61.5%;
+  transition: 0.6s ease-in-out;
+}
+
+div.page {
+  background-color: #333;
+  position: absolute;
+  transform: translateX(-105vw);
+  transform-origin: (0, 0);
+  opacity:0.9;
+  left: 15% !important;
+  top: 15%;
+  width: 50%;
+  height: 61.5%;
+  transition: 0.6s ease-in-out;
+}
+
+.left-cards {
+  transform: translateX(0.7vw) !important;
+}
+
+.menu-pane p {
+  color: black;
+  font-size: 0.6em;
+}
+
+.menu-links button, a, span {
+  transition: 0.5s ease-in-out;
+}
+
+.menu-pane button {
+  font-size: 1em;
+  color:white;
+  position:inline-block;
+  width:100%;
+  height:10vh;
+  background-color: transparent;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  
+}
+
+.menu-links button a,p{
+  color: white;
+  text-decoration: none;
+  height: 100%;
+}
+
+.page {
+  color: white;
+  text-decoration: none;
+  padding: 2vw;
+  font-size: 1.05em;
+}
+
+.right-list {
+  position: absolute;
+  right:5vw;
+  bottom:5vh;
+}
+
+.right-top-list{
+  position: absolute;
+  right: 5vw;
+  top: 15vh;
+}
+.menu-links button:hover {
+  background-color: #FFAB91;
+}
+
+input.hamburger-checkbox {
+  position: absolute;
+  z-index: 3;
+  top: 20%;
+  left: 5%;
+  width: 10vw;
+  opacity: 0;
+  height: 6vh;
+}
+
+#work-experience-page {
+  padding-top: 1vh;
 }

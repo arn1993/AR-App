@@ -72,10 +72,9 @@
 
 				// model
 				var loader = new FBXLoader();
-				loader.load( 'models/fbx/waving.fbx', function ( object ) {
-
+				loader.load( 'models/fbx/Wave.fbx', function ( object ) {
+					console.log(object)
 					mixer = new THREE.AnimationMixer( object );
-
 					var action = mixer.clipAction( object.animations[ 0 ] );
 					action.play();
 

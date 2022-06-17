@@ -14,104 +14,236 @@
 	<body>
 		<div id="info">
 			Hello and welcome to my Webpage!<br>
-			Press on the buttons to know more about me.
+			Press on the button to know more about me.<br>
+			(More animations coming to the model of me soon!)
 		</div>
 
-		<div id="resume" class="left-buttons first-page">
-			<a href="../resume.pdf" download="resume.pdf"><button class="transparent-button">Resume</button></a>
+		<div class="menu-container" id="sideburger">
+  
+			<input type="checkbox" id="openmenu" class="hamburger-checkbox" onclick="doalert(this)">
+			
+			<div class="hamburger-icon">
+			  <label for="openmenu" id="hamburger-label">
+				<span></span>
+				<span></span>
+				<span></span>
+			  </label>    
+			</div>
+		  
+			  <div class="menu-pane">				
+				<nav>
+				  <div class="menu-links">					
+					<button class="menu-button"><a href="../resume.pdf" download="resume.pdf">Resume</a></button>
+					<button class="menu-button" onclick="achievementsNavigation()"><a href="###">Achievements</a></button>
+					<a target="_blank" href="https://github.com/rna-afk"><button class="menu-button">Work Samples</button></a>		  
+					<button class="menu-button" onclick="educationNavigation()"><a href="###">Education</a></button>
+					<button class="menu-button" onclick="workExperienceNavigation()"><a href="###">Work Experience</a></button>
+					<button class="menu-button" onclick="aboutMeNavigation()"><a href="###">About me</a></button>
+					</div>
+				</nav>
+			  </div>
 		</div>
-		<div id="achievements" onclick="achievementsNavigation()" class="left-buttons first-page">
-			<button class="transparent-button">Achievements</button>
-		</div>
-		<div id="worksamples"  class="left-buttons first-page">
-			<a target="_blank" href="https://github.com/rna-afk"><button class="transparent-button">Work Samples</button></a>
-		</div>
-		<div id="education" onclick="educationNavigation()" class="right-buttons first-page">
-			<button class="transparent-button">Education</button>
-		</div>
-		<div id="workexperience" onclick="workExperienceNavigation()" class="right-buttons first-page">
-			<button class="transparent-button">Work Experience</button>
-		</div>
-		<div id="aboutme" onclick="aboutMeNavigation()" class="right-buttons first-page">
-			<button class="transparent-button">About me</button>
+		<div class="right-button">			
+			<button class="menu-button animations" id="right-button">Wave! </button>
 		</div>
 
-		<div id="backbutton" onclick="backToPage()" class="back-button">
-			<button class="transparent-button">Back</button>
-		</div>
-
-		<div class="achievements-page page hidden">
-			<div style="padding-left: 10%;">Here are a list of achievements:</div>
+		<div class="page" id="achievements-page">
+			<input type="checkbox" id="openachievements" class="hamburger-checkbox">
+			
+			<div class="hamburger-icon-achievements" onclick="hideCurrentContent()">
+			  <label for="openachievements" id="achievements-hamburger-label">
+				<span></span>
+				<span></span>
+			  </label>    
+			</div>
 			<ul>
+				<p>Here are some of my achievements:</p>
 				<li><a target="_blank" href="https://youtu.be/UH5r1rEz9Gg">Coded and contributed to the AWS Re:Invent Preston Digital Twin</a></li>
-				<li><a href="../Microsoft_Certificate.pdf" download="Certificate.pdf">Microsoft Certified Professional</a></li>
-				<li><a href="/microsoft_certificate">BSNL Platinum Certificate</a></li>
-				<li><a href="/microsoft_certificate">BSNL Gold Certificate</a></li>
-				<li><a href="/microsoft_certificate">BSNL Silver Certificate</a></li>
-				<li><a href="/microsoft_certificate">XPOLogistics Hackathon winner in the field of AR</a></li>				
-				<li><a href="/microsoft_certificate">SRM Infotech Certificate for C, C++ and Java</a></li>
-				<li><a href="/microsoft_certificate">Data Structures and Algorithms in C Certificate from NPTEL(IIT-Madras)</a></li>
+				<li><a href="/microsoft_certificate" target="_blank">Microsoft Certified Professional</a></li>
+				<li><a>BSNL Platinum Certificate</a></li>
+				<li><a>BSNL Gold Certificate</a></li>
+				<li><a>BSNL Silver Certificate</a></li>
+				<li><a>XPOLogistics Hackathon winner in the field of AR</a></li>				
+				<li><a>SRM Infotech Certificate for C, C++ and Java</a></li>
+				<li><a>Data Structures and Algorithms in C Certificate from NPTEL(IIT-Madras)</a></li>
 			</ul>
 		</div>
 
-		<div class="work-experience-page page hidden">
-			<div class="work-experience-page page hidden left-paragraph" style="top:25px"><br>
-				<span>Infosys Ltd : Dec 2015 - Dec 2018</span><br>
-				<span>Senior Software Developer</span><br>
-				<span>
+		<div class="page" id="work-experience-page">
+			<input type="checkbox" id="openwork" class="hamburger-checkbox">
+			
+			<div class="hamburger-icon-achievements" onclick="hideCurrentContent()">
+			  <label for="openwork" id="achievements-hamburger-label">
+				<span></span>
+				<span></span>
+			  </label>    
+			</div>
+			<div>
+				<div>Infosys Ltd : Dec 2015 - Dec 2018</div>
+				<div>Senior Software Developer</div>
+				<div>
 					Worked with the Infosys R&D Division - iCETS in the field of IoT developing 
 					full stack, hybrid mobile app (Ionic framework), Cloud based analytics(Azure)
 					and sensor integration code including being involved in SCRUM calls, design 
 					discussions and actual coding. Helped build state of the art applications and POCs that Infosys would use 
 					to bring in new customers. Worked in 8 projects for a period of 3 years.
-				</span><br>
-				<button onclick="projectsNavigation()" class="transparent-button small-buttons">Project Details</button>
+				</div>
+				<button onclick="projectsNavigation()" class="transparent-button small-buttons">Details</button>
 			</div>
-			<div class="work-experience-page page hidden left-paragraph" style="top:400px"><br>
-				<span>Red Hat Inc : Jan 2020 - Aug 2020</span><br>
-				<span>Master's Intern</span><br>
-				<span>
-					Worked with the Openshift Installer team that creates clusters in any cloud
+			<div>
+				<div>Red Hat Inc : Jan 2020 - Aug 2020 and Jan 2021 to Present</div>
+				<div>Software Intern -> Software Engineer</div>
+				<div>
+					Working with the Openshift Installer team that creates clusters in any cloud
 					platform. Designed and coded the new metric system that would collect usage
 					data from the users and report if any users face any troubles creating a 
 					cluster and faces repeated failures. The usage data will also carry environment
 					specific details and will help Red Hat analyze why the installation failed.
-				</span><br>
-				<button onclick="projectsRedHatNavigation()" class="transparent-button small-buttons">Project Details</button>
+				</div>
+				<button onclick="projectsRedHatNavigation()" class="transparent-button small-buttons">Details</button>
 			</div>
 		</div>
-
-		<div class="work-experience-page page hidden">
-			<div class="work-experience-page page hidden right-paragraph" style="top:25px"><br>
-				<span>Northeastern University : Apr 2019 - Dec 2019, Sept 2020 - Dec 2020</span><br>
-				<span>Graduate Teaching Assistant</span><br>
-				<span>
-					Worked as a Teaching Assistant for the subjects Programming Design Paradigm, Object Oriented Programming
-					and Algorithms for 3 semesters.
-				</span><br>
-				<button onclick="projectsRedHatNavigation()" class="transparent-button small-buttons">Project Details</button>
+		<div class="page" id="infosys-page">
+			<input type="checkbox" id="openinfosys" class="hamburger-checkbox">
+			
+			<div class="hamburger-icon-achievements" onclick="workExperienceNavigation()">
+			  <label for="openinfosys" id="achievements-hamburger-label">
+				<span></span>
+				<span></span>
+			  </label>    
 			</div>
+			<div>DOF</div>
+			<div>
+				Worked on Digital Oil Field which was to make a website and provide users with data fed live
+				through sensors on the field and supplied via a database on Azure. Provides a way to customize
+				the dashboards with custom graphs, gauges and just plain text from logs/messages and stores them
+				for each user. 
+				<div>Tech: Angular.js, Node.js server, C# server, MSSQL database.</div>
+			</div><br>
+			<div>Social Gifting</div>
+			<div>
+				Worked on an Ionic based mobile app that would provide a platform to create events and allow
+				users to invite others and can also contribute money to an event which can be used to buy gifts
+				or provide gift cards for the event.
+				<div>Tech: Ionic Framework, Angular.js</div>
+			</div><br>
+			<div>Azure EBS system</div>
+			<div>
+				Built a system on Microsoft Azure to ingest sensor data from oil rigs across the world and monitor
+				them for defects using StreamAnalytics and create alerts which will automatically create work orders
+				for the people in the field to check the specific machinery for repairs. Worked on collecting at least 
+				20 signals coming from 10,000 machines and provided full visibility to the users. 
+				<div>Tech: StreamAnalytics,	DataFactory, Topic bus, MSSQL server, Function Apps.</div>
+			</div><br>
+			<div>Digital Twin</div>
+			<div>
+				Worked on 3d Printing a working jet turbine and providing a 3d model of it on a website along with
+				data collected from sensors we attached to it. Worked on a dashboard, attaching sensors using UART
+				interface, a python code to interface with the sensor and get the data using a Raspberry Pi and 
+				publishing data to a server from where the data is collected and displayed onto a dashboard for
+				users to see. Displayed in the Las Vegas AWS re:invent event in 2018.
+				<div>Tech: AWS Sumerian, Raspberry PI, RPM sensor, Three.js</div>
+			</div>			
 		</div>
-
-		<div class="education-page page hidden">
-			<div class="education-page page hidden left-paragraph" style="top:25px">
-				<span>
-					P.B College of Engineering - Anna University : Aug 2011 - May 2015
-				</span>
-				<span>
+		<div class="page" id="red-hat-page">
+			<input type="checkbox" id="openredhat" class="hamburger-checkbox">
+			
+			<div class="hamburger-icon-achievements" onclick="workExperienceNavigation()">
+			  <label for="openredhat" id="achievements-hamburger-label">
+				<span></span>
+				<span></span>
+			  </label>    
+			</div>
+			<div>Summary</div>
+			<div>
+				Working with the Openshift Installer team to allow for all cloud platforms to enable automatic openshift
+				cluster installation on their platforms and also working on customizing the clusters with as much flexibility
+				as possible. 
+				<div>Tech used: Golang with connections to almost all the public cloud systems like Azure, AWS, GCP etc.</div>
+			</div><br>
+			<div>Telemetry System</div>
+			<div>
+				Worked on creating a telemetry system where the data from the remote Installer binary will be sent to a 
+				centrallized server which will provide insight in how the users are using the product along with the
+				cause for failures amongst users. Also made it easy to shut it down if users don't want their data 
+				privacy breached.
+				<div>Tech used: Prometheus, Prometheus Pushgateway.</div>
+			</div><br>
+			<div>Customizing disk types for Azure and GCP</div>
+			<div>
+				Worked on enabling the user to customize the instance type and the disk size for the cluster nodes on Azure
+				and GCP.
+			</div><br>
+			<div>All other contributions are in  <a href="https://github.com/rna-afk" target="_blank">here</a></div>
+		</div>
+		<div class="page" id="education-page">
+			<input type="checkbox" id="openeducation" class="hamburger-checkbox">			
+			<div class="hamburger-icon-achievements" onclick="hideCurrentContent()">
+			  <label for="openeducation" id="achievements-hamburger-label">
+				<span></span>
+				<span></span>
+			  </label>    
+			</div>
+			<div>
+				<div>P.B College of Engineering - Anna University </div>
+				<div>Aug 2011 - May 2015</div>
+				<div>
 					Bachelor of Engineering in Electronics and Communication Engineering
-				</span>
+				</div>
+				<ul>
+					<li>Computer Networks</li>
+					<li>Microprocessors and Microcomputers</li>
+					<li>Digital Signal Processing</li>
+				</ul>
+				<ul class="right-top-list">
+					<li>Integrated Circuits</li>
+					<li>Signals and Systems</li>
+					<li>Antennas and Wave Propagation</li>
+				</ul>
 			</div>
-			<div class="education-page page hidden left-paragraph" style="top:125px">
-				<span>
-					Northeastern University - Khoury College of Computer Sciences : Jan 2019 - Dec 2020
-				</span>
-				<span>
-					Master's of Science in Computer Science
-				</span>
+			<div>
+				<div>
+					Northeastern University - Khoury College of Computer Sciences
+				</div>
+				<div> Jan 2019 - Dec 2020</div>
+				<div>
+					Master of Science in Computer Science
+				</div>
+				<ul>
+					<li>Programming Design Paradigms</li>
+					<li>Fundamentals of AI</li>
+					<li>Algorithms</li>
+					<li>Computer Systems</li>
+				</ul>
+				<ul class="right-list">
+					<li>Reinforcement Learning</li>
+					<li>Mobile App Development</li>
+					<li>Computer Graphics</li>
+					<li>Software Vulnerabilities and Security</li>
+				</ul>
 			</div>
 		</div>
-
+		<div class="page" id="about-me-page">
+			<input type="checkbox" id="openabout" class="hamburger-checkbox">			
+			<div class="hamburger-icon-achievements" onclick="hideCurrentContent()">
+			  <label for="openabout" id="achievements-hamburger-label">
+				<span></span>
+				<span></span>
+			  </label>    
+			</div>
+			<div>
+				<div>Aditya Narayanaswamy</div>
+				<div id="age"></div>
+				<div>Location: Boston, Massachusetts</div><br>
+				<div> I have been coding since the 7th grade and have liked it. I have worked with coding in a lot of fields like
+					graphics, AR/VR, AI, UX, Full stack, Security, Networking and have liked all of them. My personal interests are to
+					work with new and interesting stuff and have started to like contributing to open source code. 
+				</div><br>
+				<div>My hobbies are travelling and playing computer games. I also like reading about the new cutting edge stuff the 
+					scientists and students create. 
+				</div><br>
+			</div>			
+		</div>
 
 		<script type="module">
 
@@ -129,7 +261,13 @@
 			var clock = new THREE.Clock();
 			var mixer;
 			var stats = new Stats();
+			var object;
+			var elapsedTime = 0;
 
+			document.getElementById("right-button").addEventListener("click",function(){
+				clock.start();
+				animate();
+			},false);
 			init();
 			render();
 			// animate();
@@ -147,7 +285,7 @@
 				new RGBELoader()
 					.setDataType( THREE.UnsignedByteType )
 					.setPath( 'textures/equirectangular/' )
-					.load( 'royal_esplanade_1k.hdr', function ( texture ) {
+					.load( 'venice_sunset_1k.hdr', function ( texture ) {
 
 						var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
 
@@ -166,43 +304,26 @@
 
 						var dracoLoader = new DRACOLoader();
 						dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
-
-						//var loader = new GLTFLoader().setPath( 'models/gltf/DamagedHelmet/glTF/' );
 						var loader = new GLTFLoader()
-						loader.setDRACOLoader(dracoLoader)
-						loader.load( 'models/gltf/aditya.glb', function ( gltf ) {
-
-							gltf.scene.traverse( function ( child ) {
-
-								if ( child.isMesh ) {
-
-									// TOFIX RoughnessMipmapper seems to be broken with WebGL 2.0
-									// roughnessMipmapper.generateMipmaps( child.material );
-
-								}
-
-							} );
-
+						loader.load( 'models/gltf/untitled.glb', function ( gltf ) {
 							gltf.scene.scale.x = 0.125
 							gltf.scene.scale.y = 0.125
 							gltf.scene.scale.z = 0.125
 
+							object = gltf;
+
 							gltf.scene.position.y = -1.25
 							gltf.scene.rotation.y = -0.5
-							gltf.scene.position.x = -0.125
+							gltf.scene.position.x = 1
 							console.log(gltf);
 
 							mixer = new THREE.AnimationMixer( gltf.scene );
-							mixer.clipAction( gltf.animations[ 0 ] ).play();
+							mixer.clipAction( gltf.animations[0] ).play();
 
 							renderer.setAnimationLoop(mixer);
-
 							scene.add( gltf.scene );
-
 							roughnessMipmapper.dispose();
-
 							render();
-
 						} );
 
 					} );
@@ -225,106 +346,98 @@
 				controls.target.set( 0, 0, - 0.2 );
 				controls.update();
 				animate();
-
 				window.addEventListener( 'resize', onWindowResize, false );
-
 			}
 
 			function onWindowResize() {
-
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
-
 				renderer.setSize( window.innerWidth, window.innerHeight );
-
 				render();
-
 			}
 
-			//
-
 			function render() {
-
 				renderer.render( scene, camera );
-				
-
 			}
 
 			function animate() {
-
-				requestAnimationFrame( animate );
-
-				var delta = clock.getDelta();
-				console.log(delta);
-
-				mixer.update( delta );
-
-				controls.update();
-
-				stats.update();
-
-				renderer.render( scene, camera );
-
-			}
-
-			
-
+				var buttons = document.getElementsByClassName("animations");
+				if(clock.elapsedTime < 4.25){
+					requestAnimationFrame( animate );
+					for(let i=0;i<buttons.length;i++){
+						buttons[i].disabled = true;
+					}
+					var delta = clock.getDelta();
+					mixer.update(delta);
+					controls.update();
+					stats.update();
+					renderer.render( scene, camera );
+				} else {
+					clock.stop();
+					for(let i=0;i<buttons.length;i++){
+						buttons[i].disabled = false;
+					}
+				}
+			}		
 		</script>
 		<script>
-			var prevPage = "first-page";
-			function hideAllContent() {
-				var cssClasses = ["first-page","achievements-page","work-sample-page",
-				"work-experience-page","education-page","about-me-page"];
-				for(var i=0;i<cssClasses.length;i++) {
-					var buttons = document.getElementsByClassName(cssClasses[i]);
-					for(var j=0;j<buttons.length;j++) {
-						buttons[j].style.display = "none";
+			var birthday = new Date("1993-06-16");
+			var age = new Date().getFullYear() - birthday.getFullYear();
+			document.getElementById("age").innerText = "Age: "+ age
+			function hideCurrentContent() {
+				var buttons = document.getElementsByClassName("left-cards");
+				if(buttons.length != 0) {
+					for(let i=0;i<buttons.length;i++){
+						buttons[i].classList.remove("left-cards");
 					}
 				}
 			}
 
-			function displayOnePage(cssClassNameForPage){
-				hideAllContent();
-				var buttons = document.getElementsByClassName(cssClassNameForPage);
-				for(var i=0;i<buttons.length;i++) {
-					buttons[i].style.display = "block";
+			function displayOnePage(idForPage){
+				var list = [];
+				for(let i=0;i<idForPage.length;i++){
+					var button = document.getElementById(idForPage);
+					if(!button.classList.value.includes("left-cards")){
+						list.push(button)
+					}
+				}
+				hideCurrentContent();
+				for(let i=0;i<list.length;i++){
+					list[i].classList.add("left-cards");
 				}
 			}
 
-			function backToPage(){
-				hideAllContent();
-				displayOnePage(prevPage);
-				document.getElementById("backbutton").style.display = "none";
-			}
-
 			function achievementsNavigation(){
-				displayOnePage("achievements-page");
-				prevPage = "first-page";
-				document.getElementById("backbutton").style.display = "block";
+				displayOnePage(["achievements-page"]);
 			}
 
 			function workSampleNavigation(){
-				displayOnePage("work-sample-page");
-				prevPage = "first-page";
-				document.getElementById("backbutton").style.display = "block";
+				displayOnePage(["work-sample-page"]);
+			}
+			function projectsNavigation(){
+				displayOnePage(["infosys-page"]);
+			}
+
+			function projectsRedHatNavigation(){
+				displayOnePage(["red-hat-page"]);
 			}
 
 			function aboutMeNavigation(){
-				displayOnePage("about-me-page");
-				prevPage = "first-page";
-				document.getElementById("backbutton").style.display = "block";
+				displayOnePage(["about-me-page"]);
 			}
 
 			function workExperienceNavigation(){
-				displayOnePage("work-experience-page");
-				prevPage = "first-page";
-				document.getElementById("backbutton").style.display = "block";
+				displayOnePage(["work-experience-page"]);
 			}
 
 			function educationNavigation(){
-				displayOnePage("education-page");
-				prevPage = "first-page";
-				document.getElementById("backbutton").style.display = "block";
+				displayOnePage(["education-page"]);
+			}
+
+			function doalert(checkboxElem) {
+				if (!checkboxElem.checked) {
+					hideCurrentContent();
+				}
 			}
 		</script>
 
